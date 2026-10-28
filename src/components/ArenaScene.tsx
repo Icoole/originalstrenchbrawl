@@ -33,14 +33,14 @@ function LogoEmblem() {
 
   useFrame(({ clock }) => {
     if (!group.current) return;
-    group.current.position.y = 2.1 + Math.sin(clock.elapsedTime * 0.8) * 0.14;
+    group.current.position.y = 2.3 + Math.sin(clock.elapsedTime * 0.8) * 0.12;
     group.current.rotation.y = Math.sin(clock.elapsedTime * 0.3) * 0.08;
   });
 
   return (
-    <group ref={group} position={[0, 2.1, 0]}>
+    <group ref={group} position={[0, 2.3, 0]}>
       <mesh>
-        <planeGeometry args={[4.6, 4.6]} />
+        <planeGeometry args={[3.4, 3.4]} />
         <meshBasicMaterial
           map={tex}
           alphaMap={alpha}
