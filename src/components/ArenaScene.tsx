@@ -30,17 +30,17 @@ function LogoEmblem() {
   const tex = useTexture(LOGO_URL);
   const alpha = useRadialAlpha();
   const viewport = useThree((s) => s.viewport);
-  const size = Math.min(3.4, Math.max(2.1, viewport.width * 0.6));
+  const size = Math.min(3.4, Math.max(1.9, viewport.width * 0.55));
   const group = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
     if (!group.current) return;
-    group.current.position.y = 2.2 + Math.sin(clock.elapsedTime * 0.8) * 0.12;
+    group.current.position.y = 2.35 + Math.sin(clock.elapsedTime * 0.8) * 0.12;
     group.current.rotation.y = Math.sin(clock.elapsedTime * 0.3) * 0.08;
   });
 
   return (
-    <group ref={group} position={[0, 2.2, 0]}>
+    <group ref={group} position={[0, 2.35, 0]}>
       <mesh>
         <planeGeometry args={[size, size]} />
         <meshBasicMaterial

@@ -170,7 +170,7 @@ function Nav() {
       <div className="panel-glass mx-auto mt-4 flex max-w-6xl items-center justify-between gap-4 rounded-2xl px-4 py-3 sm:px-6">
         <a href="#top" className="flex items-center gap-3">
           <img src={LOGO_URL} alt="Trench Brawl logo" className="h-10 w-10 rounded-xl object-cover" />
-          <span className="text-lg font-black uppercase tracking-wide text-foreground">
+          <span className="text-base font-black uppercase tracking-wide whitespace-nowrap text-foreground sm:text-lg">
             Trench <span className="text-primary">Brawl</span>
           </span>
         </a>
