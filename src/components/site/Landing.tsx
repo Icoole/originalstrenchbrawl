@@ -311,7 +311,7 @@ function XpSection() {
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl border border-border bg-card">
+          <div className="self-start overflow-hidden rounded-3xl border border-border bg-card">
             <div className="bg-secondary px-6 py-4">
               <p className="text-sm font-black uppercase tracking-widest text-foreground">The exchange ratio</p>
             </div>

@@ -1,5 +1,5 @@
 import { Suspense, useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, Sparkles, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import logoAsset from "@/assets/trench-brawl-logo.jpg.asset.json";
