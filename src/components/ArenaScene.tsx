@@ -153,7 +153,7 @@ export default function ArenaScene({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <Canvas
-        camera={{ position: [0, 2.4, 9.5], fov: 42 }}
+        camera={{ position: [0, 2.1, 10.2], fov: 42 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
         onCreated={() => {
