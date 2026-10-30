@@ -36,7 +36,7 @@ const FIGHTER_URLS = [
 ];
 
 const RING_RADIUS = 4.5;
-const CARD_Y = 2.55;
+const CARD_Y = 2.3;
 
 /**
  * A ring of fighter portrait cards slowly orbiting above the arena,
@@ -71,7 +71,7 @@ function FighterCarousel() {
               <meshBasicMaterial
                 color="#1e7fc4"
                 transparent
-                opacity={0.35}
+                opacity={0.22}
                 side={THREE.DoubleSide}
                 depthWrite={false}
                 toneMapped={false}
