@@ -10,91 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BattleBoardRouteImport } from './routes/battle-board'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as FightersRouteImport } from './routes/fighters'
-import { Route as RoadmapRouteImport } from './routes/roadmap'
-import { Route as XpProgramRouteImport } from './routes/xp-program'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BattleBoardRoute = BattleBoardRouteImport.update({
-  id: '/battle-board',
-  path: '/battle-board',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FightersRoute = FightersRouteImport.update({
-  id: '/fighters',
-  path: '/fighters',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RoadmapRoute = RoadmapRouteImport.update({
-  id: '/roadmap',
-  path: '/roadmap',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const XpProgramRoute = XpProgramRouteImport.update({
-  id: '/xp-program',
-  path: '/xp-program',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/battle-board': typeof BattleBoardRoute
-  '/faq': typeof FaqRoute
-  '/fighters': typeof FightersRoute
-  '/roadmap': typeof RoadmapRoute
-  '/xp-program': typeof XpProgramRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/battle-board': typeof BattleBoardRoute
-  '/faq': typeof FaqRoute
-  '/fighters': typeof FightersRoute
-  '/roadmap': typeof RoadmapRoute
-  '/xp-program': typeof XpProgramRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/battle-board': typeof BattleBoardRoute
-  '/faq': typeof FaqRoute
-  '/fighters': typeof FightersRoute
-  '/roadmap': typeof RoadmapRoute
-  '/xp-program': typeof XpProgramRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    '/' | '/battle-board' | '/faq' | '/fighters' | '/roadmap' | '/xp-program'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/battle-board' | '/faq' | '/fighters' | '/roadmap' | '/xp-program'
-  id:
-    | '__root__'
-    | '/'
-    | '/battle-board'
-    | '/faq'
-    | '/fighters'
-    | '/roadmap'
-    | '/xp-program'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BattleBoardRoute: typeof BattleBoardRoute
-  FaqRoute: typeof FaqRoute
-  FightersRoute: typeof FightersRoute
-  RoadmapRoute: typeof RoadmapRoute
-  XpProgramRoute: typeof XpProgramRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -106,51 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/battle-board': {
-      id: '/battle-board'
-      path: '/battle-board'
-      fullPath: '/battle-board'
-      preLoaderRoute: typeof BattleBoardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/fighters': {
-      id: '/fighters'
-      path: '/fighters'
-      fullPath: '/fighters'
-      preLoaderRoute: typeof FightersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/roadmap': {
-      id: '/roadmap'
-      path: '/roadmap'
-      fullPath: '/roadmap'
-      preLoaderRoute: typeof RoadmapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/xp-program': {
-      id: '/xp-program'
-      path: '/xp-program'
-      fullPath: '/xp-program'
-      preLoaderRoute: typeof XpProgramRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BattleBoardRoute: BattleBoardRoute,
-  FaqRoute: FaqRoute,
-  FightersRoute: FightersRoute,
-  RoadmapRoute: RoadmapRoute,
-  XpProgramRoute: XpProgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

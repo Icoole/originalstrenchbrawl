@@ -1,15 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hero, StatsStrip, PageMenu } from "@/components/site/home";
-
-function Home() {
-  return (
-    <>
-      <Hero />
-      <StatsStrip />
-      <PageMenu />
-    </>
-  );
-}
+import Landing from "@/components/site/Landing";
 
 export const Route = createFileRoute("/")({
   ssr: false,
@@ -31,5 +21,5 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Home,
+  component: Landing,
 });
