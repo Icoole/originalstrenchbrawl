@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "23e7ed5c-3b6d-4158-8948-7416085d452b",
-  "project_id": "9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9",
-  "url": "/__l5e/assets-v1/23e7ed5c-3b6d-4158-8948-7416085d452b/fighter-wif.png",
-  "r2_key": "a/v1/9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9/23e7ed5c-3b6d-4158-8948-7416085d452b/fighter-wif.png",
-  "original_filename": "fighter-wif.png",
-  "size": 186629,
   "content_type": "image/png",
-  "created_at": "2026-10-30T08:41:10Z"
+  "created_at": "2026-10-30T08:41:10Z",
+  "original_filename": "fighter-wif.png",
+  "project_id": "067ad8e7-f3e1-4f62-83fe-441b7940b3c1",
+  "r2_key": "a/v1/067ad8e7-f3e1-4f62-83fe-441b7940b3c1/23e7ed5c-3b6d-4158-8948-7416085d452b/fighter-wif.png",
+  "size": 186629,
+  "url": "/__l5e/assets-v1/23e7ed5c-3b6d-4158-8948-7416085d452b/fighter-wif.png",
+  "version": 1
 }

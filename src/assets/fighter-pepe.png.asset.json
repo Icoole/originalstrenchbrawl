@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "9fc47459-be6c-4ddb-b35f-0820557c79ae",
-  "project_id": "9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9",
-  "url": "/__l5e/assets-v1/9fc47459-be6c-4ddb-b35f-0820557c79ae/fighter-pepe.png",
-  "r2_key": "a/v1/9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9/9fc47459-be6c-4ddb-b35f-0820557c79ae/fighter-pepe.png",
-  "original_filename": "fighter-pepe.png",
-  "size": 245223,
   "content_type": "image/png",
-  "created_at": "2026-10-30T08:40:47Z"
+  "created_at": "2026-10-30T08:40:47Z",
+  "original_filename": "fighter-pepe.png",
+  "project_id": "067ad8e7-f3e1-4f62-83fe-441b7940b3c1",
+  "r2_key": "a/v1/067ad8e7-f3e1-4f62-83fe-441b7940b3c1/9fc47459-be6c-4ddb-b35f-0820557c79ae/fighter-pepe.png",
+  "size": 245223,
+  "url": "/__l5e/assets-v1/9fc47459-be6c-4ddb-b35f-0820557c79ae/fighter-pepe.png",
+  "version": 1
 }

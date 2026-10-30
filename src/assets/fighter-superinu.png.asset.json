@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "8a0faf4f-949e-4e64-b1d4-7708cc1e9c58",
-  "project_id": "9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9",
-  "url": "/__l5e/assets-v1/8a0faf4f-949e-4e64-b1d4-7708cc1e9c58/fighter-superinu.png",
-  "r2_key": "a/v1/9096b5ad-1cd4-485b-b9c4-3b5fdeabf9a9/8a0faf4f-949e-4e64-b1d4-7708cc1e9c58/fighter-superinu.png",
-  "original_filename": "fighter-superinu.png",
-  "size": 193619,
   "content_type": "image/png",
-  "created_at": "2026-10-30T08:41:28Z"
+  "created_at": "2026-10-30T08:41:28Z",
+  "original_filename": "fighter-superinu.png",
+  "project_id": "067ad8e7-f3e1-4f62-83fe-441b7940b3c1",
+  "r2_key": "a/v1/067ad8e7-f3e1-4f62-83fe-441b7940b3c1/8a0faf4f-949e-4e64-b1d4-7708cc1e9c58/fighter-superinu.png",
+  "size": 193619,
+  "url": "/__l5e/assets-v1/8a0faf4f-949e-4e64-b1d4-7708cc1e9c58/fighter-superinu.png",
+  "version": 1
 }
