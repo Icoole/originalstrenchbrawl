@@ -17,7 +17,6 @@ import mogImg from "@/assets/fighter-mog.png.asset.json";
 import turboImg from "@/assets/fighter-turbo.png.asset.json";
 
 const LOGO_URL = logoAsset.url;
-const FIGHTERS_URL = fightersAsset.url;
 
 const NAV_LINKS = [
   { label: "Fighters", href: "#fighters" },

@@ -1,58 +1,99 @@
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, Sparkles, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import logoAsset from "@/assets/trench-brawl-logo.jpg.asset.json";
+import pepeAsset from "@/assets/fighter-pepe.png.asset.json";
+import dogeAsset from "@/assets/fighter-doge.png.asset.json";
+import shibaAsset from "@/assets/fighter-shiba.png.asset.json";
+import flokiAsset from "@/assets/fighter-floki.png.asset.json";
+import bonkAsset from "@/assets/fighter-bonk.png.asset.json";
+import wifAsset from "@/assets/fighter-wif.png.asset.json";
+import mogAsset from "@/assets/fighter-mog.png.asset.json";
+import penguAsset from "@/assets/fighter-pengu.png.asset.json";
+import turboAsset from "@/assets/fighter-turbo.png.asset.json";
+import superinuAsset from "@/assets/fighter-superinu.png.asset.json";
+import cashcatAsset from "@/assets/fighter-cashcat.png.asset.json";
+import zcatAsset from "@/assets/fighter-zcat.png.asset.json";
+import pnutAsset from "@/assets/fighter-pnut.png.asset.json";
+import purrAsset from "@/assets/fighter-purr.png.asset.json";
 
-const LOGO_URL = logoAsset.url;
+/** Fighter portrait URLs in roster order. */
+const FIGHTER_URLS = [
+  pepeAsset.url,
+  dogeAsset.url,
+  shibaAsset.url,
+  flokiAsset.url,
+  bonkAsset.url,
+  wifAsset.url,
+  mogAsset.url,
+  penguAsset.url,
+  turboAsset.url,
+  superinuAsset.url,
+  cashcatAsset.url,
+  zcatAsset.url,
+  pnutAsset.url,
+  purrAsset.url,
+];
 
-/** Soft radial alpha map so the square logo floats as a glowing round emblem. */
-function useRadialAlpha() {
-  return useMemo(() => {
-    const size = 512;
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d")!;
-    const grad = ctx.createRadialGradient(size / 2, size / 2, size * 0.28, size / 2, size / 2, size / 2);
-    grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.72, "rgba(255,255,255,1)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, size, size);
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.needsUpdate = true;
-    return tex;
-  }, []);
-}
+const RING_RADIUS = 4.35;
+const CARD_Y = 2.65;
 
-function LogoEmblem() {
-  const tex = useTexture(LOGO_URL);
-  const alpha = useRadialAlpha();
-  const viewport = useThree((s) => s.viewport);
-  const size = Math.min(3.4, Math.max(1.9, viewport.width * 0.55));
+/**
+ * A ring of fighter portrait cards slowly orbiting above the arena,
+ * each backed by a cyan glow panel. Cards bob gently and face outward.
+ */
+function FighterCarousel() {
   const group = useRef<THREE.Group>(null);
+  const textures = useTexture(FIGHTER_URLS);
 
-  useFrame(({ clock }) => {
-    if (!group.current) return;
-    group.current.position.y = 2.35 + Math.sin(clock.elapsedTime * 0.8) * 0.12;
-    group.current.rotation.y = Math.sin(clock.elapsedTime * 0.3) * 0.08;
+  useFrame((_, delta) => {
+    if (group.current) group.current.rotation.y += delta * 0.14;
   });
 
+  const viewport = useThree((s) => s.viewport);
+  const scale = Math.min(1, Math.max(0.55, viewport.width / 10));
+
   return (
-    <group ref={group} position={[0, 2.35, 0]}>
-      <mesh>
-        <planeGeometry args={[size, size]} />
-        <meshBasicMaterial
-          map={tex}
-          alphaMap={alpha}
-          transparent
-          depthWrite={false}
-          toneMapped={false}
-        />
-      </mesh>
+    <group ref={group} position={[0, CARD_Y, 0]} scale={scale}>
+      {textures.map((tex, i) => {
+        const angle = (i / textures.length) * Math.PI * 2;
+        const aspect = tex.image ? tex.image.width / tex.image.height : 0.75;
+        const h = 1.7;
+        const w = Math.min(h * aspect, 1.9);
+        const glowW = w + 0.5;
+        const glowH = h + 0.5;
+        return (
+          <group key={i} position={[Math.cos(angle) * RING_RADIUS, 0, Math.sin(angle) * RING_RADIUS]}>
+            {/* cyan glow panel behind the portrait */}
+            <mesh rotation-y={Math.PI / 2 - angle} position={[Math.sin(angle) * -0.06, 0, Math.cos(angle) * -0.06]}>
+              <planeGeometry args={[glowW, glowH]} />
+              <meshBasicMaterial
+                color="#1e7fc4"
+                transparent
+                opacity={0.35}
+                side={THREE.DoubleSide}
+                depthWrite={false}
+                toneMapped={false}
+              />
+            </mesh>
+            <mesh rotation-y={Math.PI / 2 - angle}>
+              <planeGeometry args={[w, h]} />
+              <meshBasicMaterial map={tex} side={THREE.DoubleSide} toneMapped={false} />
+            </mesh>
+          </group>
+        );
+      })}
     </group>
   );
+}
+
+/** Keeps the whole carousel floating on a soft sine wave. */
+function CarouselFloat({ children }: { children: React.ReactNode }) {
+  const group = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    if (group.current) group.current.position.y = Math.sin(clock.elapsedTime * 0.5) * 0.08;
+  });
+  return <group ref={group}>{children}</group>;
 }
 
 function Arena() {
@@ -90,42 +131,12 @@ function Arena() {
   );
 }
 
-function OrbitingOrbs() {
-  const group = useRef<THREE.Group>(null);
-  const orbs = useMemo(
-    () =>
-      Array.from({ length: 7 }, (_, i) => ({
-        angle: (i / 7) * Math.PI * 2,
-        radius: 4.6 + (i % 2) * 0.9,
-        y: 0.4 + (i % 3) * 0.5,
-        size: 0.09 + (i % 3) * 0.04,
-        color: i % 2 === 0 ? "#3ec9f5" : "#ff9a2e",
-      })),
-    [],
-  );
-
-  useFrame(({ clock }) => {
-    if (group.current) group.current.rotation.y = clock.elapsedTime * 0.18;
-  });
-
-  return (
-    <group ref={group}>
-      {orbs.map((o, i) => (
-        <mesh key={i} position={[Math.cos(o.angle) * o.radius, o.y, Math.sin(o.angle) * o.radius]}>
-          <sphereGeometry args={[o.size, 16, 16]} />
-          <meshBasicMaterial color={o.color} toneMapped={false} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
 /** Gentle camera parallax driven by the pointer. */
 function CameraRig({ children }: { children: React.ReactNode }) {
   const group = useRef<THREE.Group>(null);
   useFrame((_, delta) => {
     if (!group.current) return;
-    const targetY = -0.14; // slight lean so the emblem reads from a low angle
+    const targetY = -0.14; // slight lean so the ring reads from a low angle
     group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, targetY, Math.min(delta * 2, 1));
   });
   return <group ref={group}>{children}</group>;
@@ -156,10 +167,11 @@ export default function ArenaScene({ className }: { className?: string }) {
         <pointLight position={[0, 4, 6]} intensity={60} color="#8fd8ff" />
         <CameraRig>
           <Suspense fallback={null}>
-            <LogoEmblem />
+            <CarouselFloat>
+              <FighterCarousel />
+            </CarouselFloat>
           </Suspense>
           <Arena />
-          <OrbitingOrbs />
           <Sparkles count={90} scale={[16, 8, 16]} size={3} speed={0.35} color="#7ad9ff" position={[0, 3, 0]} />
           <Environment resolution={128}>
             <Lightformer intensity={2} position={[0, 5, 0]} scale={[10, 10, 1]} color="#bcdcff" />
