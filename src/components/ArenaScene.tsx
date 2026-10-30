@@ -57,7 +57,8 @@ function FighterCarousel() {
     <group ref={group} position={[0, CARD_Y, 0]} scale={scale}>
       {textures.map((tex, i) => {
         const angle = (i / textures.length) * Math.PI * 2;
-        const aspect = tex.image ? tex.image.width / tex.image.height : 0.75;
+        const img = tex.image as { width?: number; height?: number } | undefined;
+        const aspect = img?.width && img?.height ? img.width / img.height : 0.75;
         const h = 1.15;
         const w = Math.min(h * aspect, 1.35);
         const glowW = w + 0.35;
