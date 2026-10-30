@@ -35,8 +35,8 @@ const FIGHTER_URLS = [
   purrAsset.url,
 ];
 
-const RING_RADIUS = 4.35;
-const CARD_Y = 2.65;
+const RING_RADIUS = 4.5;
+const CARD_Y = 2.55;
 
 /**
  * A ring of fighter portrait cards slowly orbiting above the arena,
@@ -51,17 +51,17 @@ function FighterCarousel() {
   });
 
   const viewport = useThree((s) => s.viewport);
-  const scale = Math.min(1, Math.max(0.55, viewport.width / 10));
+  const scale = Math.min(0.95, Math.max(0.55, viewport.width / 12));
 
   return (
     <group ref={group} position={[0, CARD_Y, 0]} scale={scale}>
       {textures.map((tex, i) => {
         const angle = (i / textures.length) * Math.PI * 2;
         const aspect = tex.image ? tex.image.width / tex.image.height : 0.75;
-        const h = 1.7;
-        const w = Math.min(h * aspect, 1.9);
-        const glowW = w + 0.5;
-        const glowH = h + 0.5;
+        const h = 1.15;
+        const w = Math.min(h * aspect, 1.35);
+        const glowW = w + 0.35;
+        const glowH = h + 0.35;
         return (
           <group key={i} position={[Math.cos(angle) * RING_RADIUS, 0, Math.sin(angle) * RING_RADIUS]}>
             {/* cyan glow panel behind the portrait */}
