@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ArenaScene from "@/components/ArenaScene";
 import logoAsset from "@/assets/trench-brawl-logo.jpg.asset.json";
-import fightersAsset from "@/assets/trench-brawl-fighters.png.asset.json";
 import dogeImg from "@/assets/fighter-doge.png.asset.json";
 import pepeImg from "@/assets/fighter-pepe.png.asset.json";
 import bonkImg from "@/assets/fighter-bonk.png.asset.json";
@@ -18,7 +17,6 @@ import mogImg from "@/assets/fighter-mog.png.asset.json";
 import turboImg from "@/assets/fighter-turbo.png.asset.json";
 
 const LOGO_URL = logoAsset.url;
-const FIGHTERS_URL = fightersAsset.url;
 
 const NAV_LINKS = [
   { label: "Fighters", href: "#fighters" },
@@ -319,19 +317,9 @@ function FightersSection() {
         Players control the fighter directly — movement, punches, kicks, blocks, jumps and special
         moves. Fight the CPU, win, and build a public record of victories and activated XP.
       </SectionHeading>
-      <div className="card-glow overflow-hidden rounded-3xl border border-border">
-        <img src={FIGHTERS_URL} alt="Trench Brawl fighter roster preview" className="w-full" />
-      </div>
-      <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {FIGHTERS.map((f) => (
-          <div
-            key={f.name}
-            className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/60"
-          >
-            <p className="text-lg font-black uppercase text-foreground">{f.name}</p>
-            <p className="mt-1 text-xs font-bold uppercase tracking-wider text-ember">{f.tag}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{f.note}</p>
-          </div>
+          <FighterCard key={f.name} f={f} />
         ))}
       </div>
       <p className="mt-6 text-center text-sm text-muted-foreground">
